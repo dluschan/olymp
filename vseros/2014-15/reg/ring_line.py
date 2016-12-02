@@ -1,0 +1,1 @@
+print(max([int(n) * (int(n) - 2 + int(n) % 2) for n in input().split()]))
