@@ -19,8 +19,8 @@ a[2] = 1 if any(index in hole for index in [1, 2]) else 2
 d[2] = 1 if any(index in hole for index in [1, 3]) else 2
 
 for i in range(3, n+1):
-    a[i] = b[i-1] + (0 if any(index in hole for index in [i-2, i]) else d[i-2]) + (0 if any(index in hole for index in [i-1, i]) else a[i-2])
-    b[i] = a[i-1] + (0 if any(index in hole for index in [i-2, i]) else c[i-2])
-    c[i] = a[i-1] + (0 if any(index in hole for index in [i-1, i+1]) else b[i-2])
-    d[i] = b[i-1] + (0 if any(index in hole for index in [i-1, i+1]) else a[i-2])
+    a[i] = (b[i-1] + (0 if any(index in hole for index in [i-2, i]) else d[i-2]) + (0 if any(index in hole for index in [i-1, i]) else a[i-2])) % (10**9 + 7)
+    b[i] = (a[i-1] + (0 if any(index in hole for index in [i-2, i]) else c[i-2])) % (10**9 + 7)
+    c[i] = (a[i-1] + (0 if any(index in hole for index in [i-1, i+1]) else b[i-2])) % (10**9 + 7)
+    d[i] = (b[i-1] + (0 if any(index in hole for index in [i-1, i+1]) else a[i-2])) % (10**9 + 7)
 print(a[n])
