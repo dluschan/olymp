@@ -6,13 +6,15 @@ c = a * (p - p // k) + b * (p - p // m)
 n = x // c
 x %= c
 
-left = 0
-right = p
-while right - left > 1:
-    mid = (left + right) // 2
-    if a * (mid - mid // k) + b * (mid - mid // m) >= x:
-        right = mid
-    else:
-        left = mid
-
-print(n * p + right)
+if x:
+    left = 0
+    right = p
+    while right - left > 1:
+        mid = (left + right) // 2
+        if a * (mid - mid // k) + b * (mid - mid // m) >= x:
+            right = mid
+        else:
+            left = mid
+    print(n * p + right)
+else:
+    print(n * p - 1)
