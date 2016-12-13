@@ -1,5 +1,3 @@
-#python3 test.py /Users/white/Documents/Projects/olymp/2014-15/river.py /Users/white/Documents/Учебные_Материалы/олимпиады/Всероссийская_Олимпиада_Школьников/информатика/2014-15/ru-olymp-regional-2015-archive/day1/river
-
 import sys
 import os
 import shutil
@@ -36,6 +34,11 @@ for path, dirname, filelist in os.walk(updir + taskname + testpath):
             os.system("diff " + output + " " + etalon + " > " + diff)
             if os.path.getsize(diff) != 0:
                 print("Error! Test number " + name)
+                print("Etalon output:")
+                os.system("cat " + etalon)
+                print("Resulting output:")
+                os.system("cat " + output)
+                print("Diff output:")
                 os.system("cat " + diff)
                 os.chdir(updir)
                 shutil.rmtree(tmpdir)
