@@ -11,7 +11,7 @@ mysuffix     = ".b"
 updir        = "../"
 tmpdir       = "tmp/"
 testpath     = "tests/"
-output       = "output.txt"
+diff         = "diff.txt"
 taskname     = sys.argv[2] + "/"
 
 if os.path.exists(tmpdir) == True:
@@ -25,21 +25,20 @@ if os.path.exists(tmpdir) == True:
 
 os.mkdir(tmpdir)
 os.chdir(tmpdir)
-for path, dirname, filelist in os.walk(taskname + testpath):
+for path, dirname, filelist in os.walk(updir + taskname + testpath):
     for name in filelist:
         f, ext = os.path.splitext(name)
         if ext == "" and f != ".DS_Store":
             etalon = name + etalonsuffix
             output = name + mysuffix
-            os.system("python3 " + sys.argv[1] + " < " + os.path.join(path, name) + " > " + output)
+            os.system("python3 " + updir + sys.argv[1] + " < " + os.path.join(path, name) + " > " + output)
             shutil.copy(os.path.join(path, etalon), etalon)
-            #os.system("recode cp1251..utf8 " + etalon)
-            if filecmp.cmp(output, etalon) == False:
-                print("Error! ")
-                print(os.stat(output))
-                print(os.stat(etalon))
+            os.system("diff " + output + " " + etalon + " > " + diff)
+            if os.path.getsize(diff) != 0:
+                print("Error! Test number " + name)
+                os.system("cat " + diff)
                 os.chdir(updir)
-                #shutil.rmtree(tmpdir)
+                shutil.rmtree(tmpdir)
                 exit(1)
 
 print("Ok")
