@@ -4,6 +4,13 @@ import shutil
 import fnmatch
 import filecmp
 
+if sys.argv[1] in ["-h", "-H", "--help", "--Help"]:
+    print("Usage: python3 test.py <program.py> <task>")
+    print("<program.py> - проверяемая программа")
+    print("<task> - директория к тестам, обычно задачи в архиве с тестами называют по номерам")
+    print("Наример, python3 test.py vseros/2016-17/okr/genom.py vseros/2016-17/okr/archive/3")
+    exit(0)
+
 etalonsuffix = ".a"
 mysuffix     = ".b"
 updir        = "../"
