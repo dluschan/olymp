@@ -2,10 +2,8 @@
 
 using namespace std;
 
-int main()
+int clumsy()
 {
-	int p = 0;
-
 	int n;
 	cin >> n;
 
@@ -13,8 +11,9 @@ int main()
 	for (int i = 0; i < n; ++i)
 		cin >> a[i] >> b[i] >> c[i];
 
+	int couples = 0;
 	for (int i = 0; i < n; ++i)
-		for (int j = 0; j < n; ++j)
+		for (int j = i + 1; j < n; ++j)
 		{
 			int k = 0;
 			if (a[i] == a[j])
@@ -24,9 +23,14 @@ int main()
 			if (c[i] == c[j])
 				++k;
 			if (k == 1)
-				++p;
+				++couples;
 		}
 
-	cout << p / 2 << endl;
+	return couples;
+}
+
+int main()
+{
+	cout << clumsy() << endl;
 	return 0;
 }
