@@ -63,6 +63,8 @@ void calc_route(int coins, int energy, Path route)
 
 int main()
 {
-	calc_route(0, 16, Path());
+	calc_route(0, 16, Path(1, make_pair(0, 0)));
 	cout << best_path_coins << endl;
+	for (Field v: best_path)
+		cout << v.first << '\t' << v.second << endl;
 }
