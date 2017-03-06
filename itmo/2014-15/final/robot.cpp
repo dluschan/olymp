@@ -30,17 +30,14 @@ bool check(Field f)
 	return (f.first >= 0 && f.first <= 5 && f.second >= 0 && f.second <= 5);
 }
 
-bool finish(int x, int y)
+bool finish(Field f)
 {
-	return (x == 5 && y == 5);
+	return (f.first == 5 && f.second == 5);
 }
 
 void calc_route(int coins, int energy, Path route)
 {
-	int x = route.back().first;
-	int y = route.back().second;
-
-	if (finish(x, y) && coins > best_path_coins)
+	if (finish(route.back()) && coins > best_path_coins)
 	{
 		best_path = route;
 		best_path_coins = coins;
@@ -51,7 +48,7 @@ void calc_route(int coins, int energy, Path route)
 	for (int* d: steps)
 	{
 		Path next_route = route;
-		Field next_step = make_pair(x + d[0], y + d[1]);
+		Field next_step = make_pair(route.back().first + d[0], route.back().second + d[1]);
 
 		if ((check(next_step)) && find(route.begin(), route.end(), next_step) == route.end())
 		{
