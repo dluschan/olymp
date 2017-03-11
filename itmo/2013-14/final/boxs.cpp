@@ -6,27 +6,27 @@ int main()
 {
     int n;
     cin >> n;
-    int size[n][4];
+    int boxs[n][4];
     for (int i = 0; i < n; ++i)
     {
-		size[i][0] = i + 1;
-        cin >> size[i][1] >> size[i][2] >> size[i][3];
+		boxs[i][0] = i + 1;
+        cin >> boxs[i][1] >> boxs[i][2] >> boxs[i][3];
     }
 	
     for (int i = 0; i < n - 1; ++i)
 	    for (int j = 0; j < n - 1 - i; ++j)
-			if (size[j][1] + size[j][2] + size[j][3] < size[j+1][1] + size[j+1][2] + size[j+1][3])
-				swap(size[j], size[j+1]);
+			if (boxs[j][1] + boxs[j][2] + boxs[j][3] < boxs[j+1][1] + boxs[j+1][2] + boxs[j+1][3])
+				swap(boxs[j], boxs[j+1]);
 	
 	bool fit = true;
     for (int i = 0; i < n - 1; ++i)
-		if (!(size[i][1] > size[i+1][1] && (size[i][2] > size[i+1][2] && size[i][3] > size[i+1][3]) || (size[i][2] > size[i+1][3] && size[i][3] > size[i+1][2])))
+		if (!(boxs[i][1] > boxs[i+1][1] && (boxs[i][2] > boxs[i+1][2] && boxs[i][3] > boxs[i+1][3]) || (boxs[i][2] > boxs[i+1][3] && boxs[i][3] > boxs[i+1][2])))
 			fit = false;
 	
 	if (fit)
 	{
 	    for (int i = 0; i < n; ++i)
-			cout << size[i][0] << ' ';
+			cout << boxs[i][0] << ' ';
 		cout << endl;
 	}
 	else
