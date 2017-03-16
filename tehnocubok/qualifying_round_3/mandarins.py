@@ -1,23 +1,21 @@
 n, k = map(int, input().split())
-parts = []
-for mandarin in input().split():
-    parts.append(int(mandarin))
+m = [int(x) for x in input().split()]
 
-while len(parts) > k:
-    parts.remove(min(parts))
+while k < len(m):
+    m.remove(min(m))
 
-while len(parts) < k and parts[0] >= 2:
-    parts.append(parts[0] // 2)
-    parts.append((parts[0] + 1) // 2)
-    parts.remove(max(parts))
+while len(m) < k and max(m) > 1:
+    m.append((max(m) + 1)// 2)
+    m.append(max(m) // 2)
+    m.remove(max(m))
 
-while len(parts) == k and max(parts) // 2 > min(parts):
-    parts.remove(min(parts))
-    parts.append(parts[0] // 2)
-    parts.append((parts[0] + 1) // 2)
-    parts.remove(max(parts))
+while k == len(m) and min(m) < max(m) // 2:
+    m.remove(min(m))
+    m.append((max(m) + 1)// 2)
+    m.append(max(m) // 2)
+    m.remove(max(m))
 
-if len(parts) == k:
-    print(min(parts))
-else:
+if len(m) < k:
     print(-1)
+else:
+    print(min(m))
